@@ -18,12 +18,12 @@ const addTask = () => {
 </script>
 
 <template>
-  <main>
-    <h1>Hello World!</h1>
+  <v-container>
+      <v-btn color="primary">Vuetify Button</v-btn>
     <div class="flex space-x-2 mb-4">
       <input v-model="newTask" placeholder="New Task..." class="p-2 border border-gray-300 rounded"/>
       <button @click="addTask" class="p-2 bg-blue-500 text-white rounded">Add Task</button>
     </div>
     <Task v-for="task in tasks" :title="task.title" :done="task.done"></Task>
-  </main>
+  </v-container>
 </template>

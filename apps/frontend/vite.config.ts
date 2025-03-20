@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineConfig(() => ({
   root: __dirname,
@@ -15,11 +16,19 @@ export default defineConfig(() => ({
     port: 4300,
     host: 'localhost',
   },
-  plugins: [vue(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
+  modules: [
+    (_options: any, nuxt: any) => {
+      nuxt.hooks.hook('vite:extendConfig', (config: any) => {
+        config.plugins.push(vuetify({ autoImport: true }))
+      })
+    }
+    ],
+  plugins: [
+    vue(),
+    vuetify({ autoImport: true }),
+    nxViteTsPaths(),
+    nxCopyAssetsPlugin(['*.md']),
+  ],
   build: {
     outDir: '../dist/frontend',
     emptyOutDir: true,
@@ -27,6 +36,7 @@ export default defineConfig(() => ({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    transpile: ['vuetify'],
   },
   test: {
     watch: false,
@@ -37,6 +47,13 @@ export default defineConfig(() => ({
     coverage: {
       reportsDirectory: '../coverage/frontend',
       provider: 'v8' as const,
+    },
+  },
+  vite: {
+    vue: {
+      template: {
+        transformAssetUrls,
+      },
     },
   },
 }));
