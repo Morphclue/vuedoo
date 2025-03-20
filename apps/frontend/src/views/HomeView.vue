@@ -19,11 +19,10 @@ const addTask = () => {
 
 <template>
   <v-container>
-      <v-btn color="primary">Vuetify Button</v-btn>
-    <div class="flex space-x-2 mb-4">
-      <input v-model="newTask" placeholder="New Task..." class="p-2 border border-gray-300 rounded"/>
-      <button @click="addTask" class="p-2 bg-blue-500 text-white rounded">Add Task</button>
-    </div>
+    <v-container class="d-flex flex-1-0">
+      <v-text-field v-model="newTask" placeholder="New Task..."/>
+      <v-btn @click="addTask">Add Task</v-btn>
+    </v-container>
     <Task v-for="task in tasks" :title="task.title" :done="task.done"></Task>
   </v-container>
 </template>
