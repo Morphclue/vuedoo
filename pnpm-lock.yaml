@@ -32,6 +32,9 @@ importers:
       vue-router:
         specifier: ^4.2.4
         version: 4.5.0(vue@3.5.13(typescript@5.7.3))
+      vuetify:
+        specifier: ^3.7.18
+        version: 3.7.18(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
     devDependencies:
       '@eslint/js':
         specifier: ^9.8.0
@@ -6035,6 +6038,22 @@ packages:
       typescript: '*'
     peerDependenciesMeta:
       typescript:
+        optional: true
+
+  vuetify@3.7.18:
+    resolution: {integrity: sha512-JDkPIaug4hP9c+K/wxSgmTiLTMjBTYv2ATPvudhkRKuhsoym89aWCXb1CVbs7FRYuRsJEOGojpwpL5rBfDDy9g==}
+    engines: {node: ^12.20 || >=14.13}
+    peerDependencies:
+      typescript: '>=4.7'
+      vite-plugin-vuetify: '>=1.0.0'
+      vue: ^3.3.0
+      webpack-plugin-vuetify: '>=2.0.0'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+      vite-plugin-vuetify:
+        optional: true
+      webpack-plugin-vuetify:
         optional: true
 
   w3c-xmlserializer@4.0.0:
@@ -12979,6 +12998,12 @@ snapshots:
       '@vue/runtime-dom': 3.5.13
       '@vue/server-renderer': 3.5.13(vue@3.5.13(typescript@5.7.3))
       '@vue/shared': 3.5.13
+    optionalDependencies:
+      typescript: 5.7.3
+
+  vuetify@3.7.18(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)):
+    dependencies:
+      vue: 3.5.13(typescript@5.7.3)
     optionalDependencies:
       typescript: 5.7.3
 
