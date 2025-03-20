@@ -7,10 +7,10 @@ export default defineConfig({
       cypressDir: 'src',
       bundler: 'vite',
       webServerCommands: {
-        default: 'npx nx run vuedoo:dev',
-        production: 'npx nx run vuedoo:preview',
+        default: 'pnpm exec nx run frontend:dev',
+        production: 'pnpm exec nx run frontend:preview',
       },
-      ciWebServerCommand: 'npx nx run vuedoo:preview',
+      ciWebServerCommand: 'pnpm exec nx run frontend:preview',
       ciBaseUrl: 'http://localhost:4300',
     }),
     baseUrl: 'http://localhost:4200',

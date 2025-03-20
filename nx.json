@@ -18,21 +18,8 @@
     ],
     "sharedGlobals": []
   },
+  "nxCloudId": "67dc4a9d26789e3b0d5cfed8",
   "plugins": [
-    {
-      "plugin": "@nx/js/typescript",
-      "options": {
-        "typecheck": {
-          "targetName": "typecheck"
-        },
-        "build": {
-          "targetName": "build",
-          "configName": "tsconfig.lib.json",
-          "buildDepsName": "build-deps",
-          "watchDepsName": "watch-deps"
-        }
-      }
-    },
     {
       "plugin": "@nx/eslint/plugin",
       "options": {
@@ -77,13 +64,10 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/backend-e2e/**/*"]
+      "exclude": ["backend-e2e/**/*"]
     }
   ],
   "targetDefaults": {
-    "test": {
-      "dependsOn": ["^build"]
-    },
     "e2e-ci--**/*": {
       "dependsOn": ["^build"]
     }
