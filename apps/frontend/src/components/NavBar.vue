@@ -1,12 +1,43 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const items = [
+  {
+    title: 'Home',
+    to: '/',
+  },
+  {
+    title: 'About',
+    to: '/about',
+  },
+];
+
+const drawer = ref(false);
+
+const navigate = (to: string) => {
+  router.push(to);
+  drawer.value = false;
+};
 </script>
 
 <template>
   <v-app-bar app color="primary" dark>
-    <v-container class="d-flex align-center">
-      <v-btn text to="/">Home</v-btn>
-      <v-btn text to="/about">About</v-btn>
-    </v-container>
+    <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-toolbar-title>Vuedoo</v-toolbar-title>
   </v-app-bar>
+  <v-navigation-drawer
+    v-model="drawer"
+    temporary
+  >
+    <v-list-item
+      v-for="item in items"
+      @click="navigate(item.to)"
+      link
+    >
+      <v-list-item-title>{{ item.title }}</v-list-item-title>
+    </v-list-item>
+  </v-navigation-drawer>
 </template>
