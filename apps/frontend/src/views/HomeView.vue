@@ -20,8 +20,7 @@ const addTask = () => {
 <template>
   <v-container class="d-flex flex-column gap-4">
     <div class="d-flex gap-2">
-      <v-text-field v-model="newTask" placeholder="New Task..." />
-      <v-btn @click="addTask">Add Task</v-btn>
+      <v-text-field v-model="newTask" placeholder="New Task..." @keydown.enter="addTask" />
     </div>
 
     <div class="d-flex flex-column gap-2">
