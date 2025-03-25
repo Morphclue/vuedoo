@@ -6,7 +6,7 @@ const router = useRouter();
 
 const items = [
   {
-    title: 'Home',
+    title: 'Tasks',
     to: '/',
   },
   {
