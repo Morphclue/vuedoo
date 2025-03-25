@@ -6,12 +6,12 @@ const isChecked = ref(props.done)
 </script>
 
 <template>
-  <div class="d-flex">
+  <v-row align="center">
+    <v-checkbox v-model="isChecked"></v-checkbox>
     <h3 class="text-h5" :class="{ 'text-decoration-line-through text-gray-500': isChecked }">
       {{ title }}
     </h3>
-    <v-checkbox v-model="isChecked"></v-checkbox>
-  </div>
+  </v-row>
 </template>
 
 <style scoped></style>
