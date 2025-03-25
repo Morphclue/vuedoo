@@ -10,6 +10,10 @@ const items = [
     to: '/',
   },
   {
+    title: 'Eisenhower',
+    to: '/eisenhower',
+  },
+  {
     title: 'About',
     to: '/about',
   },
