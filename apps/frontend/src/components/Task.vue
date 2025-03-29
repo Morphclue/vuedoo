@@ -17,8 +17,8 @@ const theme = useTheme();
         backgroundColor: hoverData.isHovering ? theme.current.value.colors.accent : theme.current.value.colors.primary,
       }"
     >
-        <v-checkbox v-model="isChecked" />
-        <p class="mb-3" :class="{ 'text-decoration-line-through text-grey': isChecked }">{{ title }}</p>
+      <v-checkbox v-model="isChecked" />
+       <p class="mb-3" :class="{ 'text-decoration-line-through text-grey': isChecked }">{{ title }}</p>
     </div>
   </v-hover>
 </template>
