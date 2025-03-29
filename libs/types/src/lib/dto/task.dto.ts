@@ -1,4 +1,5 @@
 import {OmitType} from '@nestjs/swagger';
-import {Task} from '../schema/task.schema';
+import {Task} from '../schema';
 
-export class TaskDto extends OmitType(Task, ['_id'] as const) {}
+// TODO: add id back if needed
+export class TaskDto extends OmitType(Task, ['_id', 'id'] as const) {}

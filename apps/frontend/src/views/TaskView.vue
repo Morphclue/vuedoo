@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import Task from '../components/Task.vue';
 import {ref} from 'vue';
+import {TaskDto} from '@vuedoo/types';
 
-const tasks = ref([
-  { title: 'Chill', done: false },
-  { title: 'Play Games', done: true },
-  { title: 'Go sleep', done: false },
+const tasks = ref<TaskDto[]>([
+  { title: 'Chill', completed: false },
+  { title: 'Play Games', completed: true },
+  { title: 'Go sleep', completed: false },
 ]);
 
 const newTask = ref('');
 const addTask = () => {
   if (!newTask.value) return;
-  tasks.value.push({ title: newTask.value, done: false });
+  tasks.value.push({ title: newTask.value, completed: false });
   newTask.value = '';
   return newTask.value;
 };
@@ -24,7 +25,7 @@ const addTask = () => {
     </div>
 
     <div class="d-flex flex-column gap-2">
-      <Task v-for="task in tasks" :key="task.title" :title="task.title" :done="task.done" />
+      <Task v-for="task in tasks" :title="task.title" :completed="task.completed" />
     </div>
   </v-container>
 </template>

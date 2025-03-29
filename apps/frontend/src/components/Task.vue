@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 import {useTheme} from 'vuetify';
+import {TaskDto} from '@vuedoo/types';
 
-const props = defineProps<{title: string, done: boolean}>();
-const isChecked = ref(props.done)
+const props = defineProps<TaskDto>();
+const isChecked = ref(props.completed)
 const theme = useTheme();
 </script>
 
