@@ -2,6 +2,7 @@
 import {ref} from 'vue';
 import {useTheme} from 'vuetify';
 
+// FIXME: defineProps<TaskDto>(); does not work
 const props = defineProps<{ title: string, completed: boolean }>();
 const isChecked = ref(props.completed)
 const theme = useTheme();
