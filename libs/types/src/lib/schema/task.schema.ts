@@ -21,3 +21,5 @@ export class Task {
   @IsBoolean()
   completed: boolean;
 }
+
+export const TaskSchema = SchemaFactory.createForClass(Task);
