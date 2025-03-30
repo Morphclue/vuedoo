@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import Task from '../components/Task.vue';
-import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
 import {TaskDto} from '@vuedoo/types';
+import {environment} from '../environments/environment';
+import axios from 'axios';
 
-const tasks = ref<TaskDto[]>([
-  { title: 'Chill', completed: false },
-  { title: 'Play Games', completed: true },
-  { title: 'Go sleep', completed: false },
-]);
+const tasks = ref<TaskDto[]>([]);
+onMounted(async () => {
+  const response = await fetch(`${environment.backendUrl}/api/task`);
+  tasks.value = await response.json();
+})
 
 const newTask = ref('');
-const addTask = () => {
+const addTask = async () => {
   if (!newTask.value) return;
-  tasks.value.push({ title: newTask.value, completed: false });
+  const task = { title: newTask.value, completed: false }
+  const response = await axios.post(`${environment.backendUrl}/api/task`, task);
+  tasks.value.push(response.data);
   newTask.value = '';
   return newTask.value;
 };
