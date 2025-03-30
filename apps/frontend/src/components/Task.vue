@@ -2,14 +2,24 @@
 import {ref} from 'vue';
 import {useTheme} from 'vuetify';
 
-const props = defineProps<{ title: string, completed: boolean }>();
+const props = defineProps<{ title: string, completed: boolean, _id: string }>();
 const isChecked = ref(props.completed)
 const theme = useTheme();
 
 const menuItems = [
-  { title: 'TODO'},
-  { title: 'Delete'}
+  { title: 'TODO' },
+  { title: 'Delete' }
 ]
+
+const handleMenuClick = (title: string) => {
+  if (title === 'Delete') {
+    emit('delete', props._id);
+  }
+}
+
+const emit = defineEmits<{
+  (e: 'delete', id: string): void;
+}>();
 </script>
 
 <template>
@@ -33,7 +43,11 @@ const menuItems = [
             </v-btn>
           </template>
           <v-list>
-            <v-list-item v-for="item in menuItems" :key="item.title">
+            <v-list-item
+              v-for="item in menuItems"
+              :key="item.title"
+              @click="handleMenuClick(item.title)"
+            >
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item>
           </v-list>

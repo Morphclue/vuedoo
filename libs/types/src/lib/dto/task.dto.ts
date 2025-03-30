@@ -1,3 +1,3 @@
 import {Task} from '../schema';
 
-export type TaskDto = Omit<Task, '_id'>
+export type TaskDto = Task

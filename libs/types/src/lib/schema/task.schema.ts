@@ -8,9 +8,6 @@ export class Task {
   @ApiProperty()
   _id: Types.ObjectId;
 
-  @ApiProperty()
-  id: string;
-
   @Prop()
   @ApiProperty()
   @IsString()

@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post} from '@nestjs/common';
 import {TaskService} from './task.service';
 import {TaskDto} from '@vuedoo/types';
 
@@ -15,5 +15,10 @@ export class TaskController {
   @Post()
   async createTask(@Body() task: TaskDto): Promise<TaskDto> {
     return await this.taskService.createTask(task);
+  }
+
+  @Delete(':id')
+  async deleteTask(@Param('id') id: string): Promise<TaskDto> {
+    return await this.taskService.deleteTask(id);
   }
 }

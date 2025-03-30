@@ -8,7 +8,7 @@ import axios from 'axios';
 const tasks = ref<TaskDto[]>([]);
 onMounted(async () => {
   const response = await fetch(`${environment.backendUrl}/api/task`);
-  tasks.value = await response.json();
+  tasks.value = await response.json()
 })
 
 const newTask = ref('');
@@ -20,6 +20,11 @@ const addTask = async () => {
   newTask.value = '';
   return newTask.value;
 };
+
+const deleteTask = async (id: string) => {
+  await axios.delete(`${environment.backendUrl}/api/task/${id}`);
+  tasks.value = tasks.value.filter(task => task._id !== id);
+};
 </script>
 
 <template>
@@ -29,7 +34,13 @@ const addTask = async () => {
     </div>
 
     <div class="d-flex flex-column gap-2">
-      <Task v-for="task in tasks" :title="task.title" :completed="task.completed" />
+      <Task
+        v-for="task in tasks"
+        :title="task.title"
+        :completed="task.completed"
+        :_id="task._id"
+        @delete="deleteTask"
+      />
     </div>
   </v-container>
 </template>
