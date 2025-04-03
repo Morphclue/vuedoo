@@ -18,12 +18,15 @@ export class Task {
   @IsBoolean()
   completed: boolean;
 
+  @Prop()
   @ApiPropertyOptional()
   createdAt?: Date;
 
+  @Prop()
   @ApiPropertyOptional()
   plannedAt?: Date;
 
+  @Prop()
   @ApiPropertyOptional()
   completedAt?: Date;
 }
