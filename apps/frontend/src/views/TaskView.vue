@@ -4,6 +4,7 @@ import {computed, onMounted, ref} from 'vue';
 import {TaskDto} from '@vuedoo/types';
 import {environment} from '../environments/environment';
 import axios from 'axios';
+import {format} from 'date-fns';
 
 const tasks = ref<TaskDto[]>([]);
 const datePickerOpen = ref(false);
@@ -18,11 +19,7 @@ onMounted(async () => {
 })
 
 const formattedDate = computed(() =>
-  newTask.value?.date?.toLocaleDateString('en-GB', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
-  }) ?? ''
+  newTask.value?.date ? format(newTask.value.date, 'dd.MM.yyyy') : ''
 );
 
 const addTask = async () => {
