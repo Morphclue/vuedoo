@@ -3,7 +3,9 @@ import { Types } from 'mongoose';
 import {ApiProperty, ApiPropertyOptional} from '@nestjs/swagger';
 import { IsBoolean, IsString } from 'class-validator';
 
-@Schema({})
+@Schema({
+  timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'},
+})
 export class Task {
   @ApiProperty()
   _id: Types.ObjectId;
@@ -17,10 +19,6 @@ export class Task {
   @ApiProperty()
   @IsBoolean()
   completed: boolean;
-
-  @Prop()
-  @ApiPropertyOptional()
-  createdAt?: Date;
 
   @Prop()
   @ApiPropertyOptional()
