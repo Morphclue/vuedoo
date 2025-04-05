@@ -1,4 +1,5 @@
 import nx from '@nx/eslint-plugin';
+import importPlugin from 'eslint-plugin-import';
 
 export default [
   ...nx.configs['flat/base'],
@@ -13,6 +14,9 @@ export default [
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx', '**/*.vue'],
+    plugins: {
+      'import': importPlugin,
+    },
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
@@ -27,6 +31,21 @@ export default [
           ],
         },
       ],
+      'import/order': [
+        'error',
+        {
+          'newlines-between': 'always',
+          'groups': [
+            ['builtin', 'external'],
+            ['internal'],
+            ['parent', 'sibling', 'index']
+          ],
+          'alphabetize': {
+            order: 'asc',
+            caseInsensitive: true
+          }
+        }
+      ]
     },
   },
   {
