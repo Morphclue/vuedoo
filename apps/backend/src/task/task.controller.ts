@@ -1,6 +1,7 @@
 import {Body, Controller, Delete, Get, Param, Post} from '@nestjs/common';
-import {TaskService} from './task.service';
 import {TaskDto} from '@vuedoo/types';
+
+import {TaskService} from './task.service';
 
 @Controller('task')
 export class TaskController {
