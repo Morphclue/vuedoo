@@ -1,4 +1,5 @@
 import { mount } from '@vue/test-utils';
+
 import Task from './Task.vue';
 
 describe('Task', () => {

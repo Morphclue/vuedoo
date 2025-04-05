@@ -23,7 +23,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <v-hover v-slot:default="hoverData">
+  <v-hover v-slot="hoverData">
     <div
       v-bind="hoverData.props"
       class="d-flex align-center mb-2 rounded"
@@ -34,11 +34,20 @@ const emit = defineEmits<{
       <div class="d-flex justify-space-between w-100 align-center">
         <div class="d-flex align-center">
           <v-checkbox v-model="isChecked" />
-          <p class="mb-3" :class="{ 'text-decoration-line-through text-grey': isChecked }">{{ title }}</p>
+          <p
+            class="mb-3"
+            :class="{ 'text-decoration-line-through text-grey': isChecked }"
+          >
+            {{ title }}
+          </p>
         </div>
         <v-menu>
           <template #activator="{ props: menuProps }">
-            <v-btn class="mr-2" v-bind="menuProps" icon>
+            <v-btn
+              class="mr-2"
+              v-bind="menuProps"
+              icon
+            >
               <v-icon>mdi-dots-vertical</v-icon>
             </v-btn>
           </template>

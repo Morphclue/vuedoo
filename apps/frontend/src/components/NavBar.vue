@@ -28,8 +28,15 @@ const navigate = (to: string) => {
 </script>
 
 <template>
-  <v-app-bar app color="primary" dark>
-    <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+  <v-app-bar
+    app
+    color="primary"
+    dark
+  >
+    <v-app-bar-nav-icon
+      variant="text"
+      @click.stop="drawer = !drawer"
+    />
     <v-toolbar-title>Vuedoo</v-toolbar-title>
   </v-app-bar>
   <v-navigation-drawer
@@ -38,8 +45,8 @@ const navigate = (to: string) => {
   >
     <v-list-item
       v-for="item in items"
-      @click="navigate(item.to)"
       link
+      @click="navigate(item.to)"
     >
       <v-list-item-title>{{ item.title }}</v-list-item-title>
     </v-list-item>

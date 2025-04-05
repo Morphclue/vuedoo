@@ -1,7 +1,7 @@
 import '@mdi/font/css/materialdesignicons.css';
 import 'vuetify/styles';
-import {aliases, mdi} from 'vuetify/iconsets/mdi';
 import {createVuetify} from 'vuetify';
+import {aliases, mdi} from 'vuetify/iconsets/mdi';
 
 export const vuetify = createVuetify({
   icons: {

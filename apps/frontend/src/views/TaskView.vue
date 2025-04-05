@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import Task from '../components/Task.vue';
-import {computed, onMounted, ref} from 'vue';
 import {TaskDto} from '@vuedoo/types';
-import {environment} from '../environments/environment';
 import axios from 'axios';
 import {format} from 'date-fns';
+import {computed, onMounted, ref} from 'vue';
+
+import Task from '../components/Task.vue';
+import {environment} from '../environments/environment';
 
 const tasks = ref<TaskDto[]>([]);
 const datePickerOpen = ref(false);
@@ -42,13 +43,16 @@ const deleteTask = async (id: string) => {
     <v-text-field
       v-model="newTask.title"
       placeholder="New Task..."
-      @keydown.enter="addTask"
       class="w-100"
+      @keydown.enter="addTask"
     >
       <template #append-inner>
-      <span v-if="formattedDate" class="text-caption text-grey pr-2">
-        {{ formattedDate }}
-      </span>
+        <span
+          v-if="formattedDate"
+          class="text-caption text-grey pr-2"
+        >
+          {{ formattedDate }}
+        </span>
 
         <v-menu
           v-model="datePickerOpen"
@@ -57,7 +61,12 @@ const deleteTask = async (id: string) => {
           offset-y
         >
           <template #activator="{ props }">
-            <v-btn icon v-bind="props" @click.stop class="mr-1">
+            <v-btn
+              icon
+              v-bind="props"
+              class="mr-1"
+              @click.stop
+            >
               <v-icon>mdi-calendar</v-icon>
             </v-btn>
           </template>
@@ -75,7 +84,7 @@ const deleteTask = async (id: string) => {
         v-for="task in tasks"
         :title="task.title"
         :completed="task.completed"
-        :plannedAt="task.plannedAt"
+        :planned-at="task.plannedAt"
         :_id="task._id"
         @delete="deleteTask"
       />
