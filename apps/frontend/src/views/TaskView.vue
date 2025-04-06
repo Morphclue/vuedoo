@@ -80,12 +80,14 @@ const deleteTask = async (id: string) => {
     </v-text-field>
 
     <div class="d-flex flex-column gap-2">
+      <!-- TODO: Find a better way for task._id -->
       <Task
         v-for="task in tasks"
+        :key="task._id.toString()"
         :title="task.title"
         :completed="task.completed"
         :planned-at="task.plannedAt"
-        :_id="task._id"
+        :_id="task._id.toString()"
         @delete="deleteTask"
       />
     </div>
