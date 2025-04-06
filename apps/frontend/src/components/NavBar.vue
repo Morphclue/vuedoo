@@ -45,6 +45,7 @@ const navigate = (to: string) => {
   >
     <v-list-item
       v-for="item in items"
+      :key="item.title"
       link
       @click="navigate(item.to)"
     >
