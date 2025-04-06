@@ -19,6 +19,7 @@ export default [
       'import': importPlugin,
     },
     rules: {
+      'vue/prop-name-casing': ['error', 'camelCase', { ignoreProps: ['_id'] }],
       '@nx/enforce-module-boundaries': [
         'error',
         {
