@@ -24,6 +24,12 @@ export class Task {
   @ApiPropertyOptional()
   plannedAt?: Date;
 
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
+
   @Prop()
   @ApiPropertyOptional()
   completedAt?: Date;
