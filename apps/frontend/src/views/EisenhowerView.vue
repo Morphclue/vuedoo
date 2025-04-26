@@ -1,3 +1,33 @@
+<script setup lang="ts">
+import {TaskDto} from '@vuedoo/types';
+import {onMounted, ref, computed} from 'vue';
+import {environment} from '../environments/environment';
+
+const tasks = ref<TaskDto[]>([]);
+onMounted(async () => {
+  const response = await fetch(`${environment.backendUrl}/api/task`);
+  tasks.value = await response.json();
+})
+
+tasks.value.filter(task => !task.completed);
+
+const importedUrgent = computed(() => {
+  return tasks.value.filter(task => task.priority === 'high');
+})
+
+const importantNotUrgent = computed(() => {
+  return tasks.value.filter(task => task.priority === 'high');
+})
+
+const notImportantUrgent = computed(() => {
+  return tasks.value.filter(task => task.priority != 'high');
+})
+
+const notImportantNotUrgent = computed(() => {
+  return tasks.value.filter(task => task.priority === 'high');
+})
+</script>
+
 <template>
   <v-container
     fluid
@@ -84,8 +114,6 @@
   </v-container>
 </template>
 
-<script setup lang="ts">
-</script>
 <style scoped>
 .body-height {
   height: calc(100vh - 64px);
