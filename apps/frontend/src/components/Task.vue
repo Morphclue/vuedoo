@@ -54,6 +54,7 @@ const handleMenuClick = (title: string) => {
           v-model="isChecked"
           :label="title"
           :base-color="priorityColor"
+          class="d-flex align-center"
           :class="{ 'text-decoration-line-through text-grey': isChecked }"
         />
         <v-menu>
