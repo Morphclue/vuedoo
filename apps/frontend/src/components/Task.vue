@@ -9,6 +9,9 @@ const props = defineProps<{
   _id: string,
   plannedAt: Date | undefined
 }>();
+const emit = defineEmits<{
+  (e: 'delete', id: string): void;
+}>();
 const isChecked = ref(props.completed)
 const theme = useTheme();
 
@@ -35,10 +38,6 @@ const handleMenuClick = (title: string) => {
     emit('delete', props._id);
   }
 }
-
-const emit = defineEmits<{
-  (e: 'delete', id: string): void;
-}>();
 </script>
 
 <template>
