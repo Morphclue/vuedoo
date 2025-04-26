@@ -2,7 +2,13 @@
 import {ref} from 'vue';
 import {useTheme} from 'vuetify';
 
-const props = defineProps<{ title: string, completed: boolean, _id: string, plannedAt: Date | undefined }>();
+const props = defineProps<{
+  title: string,
+  completed: boolean,
+  priority: string;
+  _id: string,
+  plannedAt: Date | undefined
+}>();
 const isChecked = ref(props.completed)
 const theme = useTheme();
 

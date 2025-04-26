@@ -105,6 +105,7 @@ const deleteTask = async (id: string) => {
         :completed="task.completed"
         :planned-at="task.plannedAt"
         :_id="task._id.toString()"
+        :priority="task.priority"
         @delete="deleteTask"
       />
     </div>
