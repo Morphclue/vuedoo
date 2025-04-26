@@ -2,7 +2,7 @@ import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import { Types } from 'mongoose';
 import {ApiProperty, ApiPropertyOptional} from '@nestjs/swagger';
 import { IsBoolean, IsString } from 'class-validator';
-import {Priority} from '../enum/priority';
+import {Priority} from '../enum';
 
 @Schema({
   timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'},

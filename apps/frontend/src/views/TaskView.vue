@@ -9,9 +9,10 @@ import {environment} from '../environments/environment';
 
 const tasks = ref<TaskDto[]>([]);
 const datePickerOpen = ref(false);
-const newTask = ref<{ title: string; date: Date | undefined }>({
+const newTask = ref<{ title: string; priority: string; date: Date | undefined }>({
   title: '',
-  date: new Date()
+  date: new Date(),
+  priority: 'medium'
 });
 
 onMounted(async () => {
@@ -25,11 +26,17 @@ const formattedDate = computed(() =>
 
 const addTask = async () => {
   if (!newTask.value) return;
-  const task = { title: newTask.value.title, completed: false, plannedAt: newTask.value.date }
+  const task = {
+    title: newTask.value.title,
+    completed: false,
+    plannedAt: newTask.value.date,
+    priority: newTask.value.priority
+  }
   const response = await axios.post(`${environment.backendUrl}/api/task`, task);
   tasks.value.push(response.data);
   newTask.value.title = '';
   newTask.value.date = new Date();
+  newTask.value.priority = 'medium';
 };
 
 const deleteTask = async (id: string) => {
@@ -40,6 +47,7 @@ const deleteTask = async (id: string) => {
 
 <template>
   <v-container class="d-flex flex-column gap-4">
+    <div class="d-flex">
     <v-text-field
       v-model="newTask.title"
       placeholder="New Task..."
@@ -78,6 +86,15 @@ const deleteTask = async (id: string) => {
         </v-menu>
       </template>
     </v-text-field>
+    <v-select
+      v-model="newTask.priority"
+      :items="['low', 'medium', 'high']"
+      density="compact"
+      variant="underlined"
+      hide-details
+      class="ml-10"
+    />
+    </div>
 
     <div class="d-flex flex-column gap-2">
       <!-- TODO: Find a better way for task._id -->
