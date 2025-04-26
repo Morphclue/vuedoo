@@ -18,6 +18,10 @@ export class TaskService {
     return await createdTask.save();
   }
 
+  async updateTask(id: string, task: Partial<TaskDto>): Promise<TaskDto> {
+    return await this.taskModel.findByIdAndUpdate(id, task, {new: true}).exec();
+  }
+
   async deleteTask(id: string): Promise<TaskDto> {
     return await this.taskModel.findByIdAndDelete(id).exec();
   }
