@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import {computed, ref} from 'vue';
 import {useTheme} from 'vuetify';
+import {environment} from '../environments/environment';
+import axios from 'axios';
 
 const props = defineProps<{
   title: string,
@@ -10,9 +12,16 @@ const props = defineProps<{
   plannedAt: Date | undefined
 }>();
 const emit = defineEmits<{
+  (e: 'update'): void;
   (e: 'delete', id: string): void;
 }>();
-const isChecked = ref(props.completed)
+const isChecked = computed({
+  get: () => props.completed,
+  set: async (value: boolean) => {
+    await axios.put(`${environment.backendUrl}/api/task/${props._id}`, {completed: value});
+    emit('update');
+  }
+})
 const theme = useTheme();
 
 const priorityColor = computed(() => {

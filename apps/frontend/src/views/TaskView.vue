@@ -16,9 +16,13 @@ const newTask = ref<{ title: string; priority: string; date: Date | undefined }>
 });
 
 onMounted(async () => {
-  const response = await axios.get(`${environment.backendUrl}/api/task`);
-  tasks.value = await response.data;
+  await fetchTasks();
 })
+
+const fetchTasks = async () => {
+  const response = await axios.get(`${environment.backendUrl}/api/task`);
+  tasks.value = response.data;
+};
 
 const formattedDate = computed(() =>
   newTask.value?.date ? format(newTask.value.date, 'dd.MM.yyyy') : ''
@@ -106,6 +110,7 @@ const deleteTask = async (id: string) => {
         :planned-at="task.plannedAt"
         :_id="task._id.toString()"
         :priority="task.priority"
+        @update="fetchTasks"
         @delete="deleteTask"
       />
     </div>
