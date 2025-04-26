@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
 import {useTheme} from 'vuetify';
 
 const props = defineProps<{
@@ -11,6 +11,19 @@ const props = defineProps<{
 }>();
 const isChecked = ref(props.completed)
 const theme = useTheme();
+
+const priorityColor = computed(() => {
+  switch (props.priority) {
+    case 'high':
+      return 'red';
+    case 'medium':
+      return 'yellow';
+    case 'low':
+      return 'blue';
+    default:
+      return 'grey';
+  }
+});
 
 const menuItems = [
   { title: 'TODO' },
@@ -41,6 +54,7 @@ const emit = defineEmits<{
         <v-checkbox
           v-model="isChecked"
           :label="title"
+          :base-color="priorityColor"
           :class="{ 'text-decoration-line-through text-grey': isChecked }"
         />
         <v-menu>
