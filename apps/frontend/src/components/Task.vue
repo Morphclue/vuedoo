@@ -60,8 +60,9 @@ const handleMenuClick = (title: string) => {
         <v-menu>
           <template #activator="{ props: menuProps }">
             <v-btn
-              class="mr-2"
+              class="mr-3"
               v-bind="menuProps"
+              density="compact"
               icon
             >
               <v-icon>mdi-dots-vertical</v-icon>
