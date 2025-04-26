@@ -2,11 +2,12 @@
 import {TaskDto} from '@vuedoo/types';
 import {onMounted, ref, computed} from 'vue';
 import {environment} from '../environments/environment';
+import axios from 'axios';
 
 const tasks = ref<TaskDto[]>([]);
 onMounted(async () => {
-  const response = await fetch(`${environment.backendUrl}/api/task`);
-  tasks.value = await response.json();
+  const response = await axios.get(`${environment.backendUrl}/api/task`);
+  tasks.value = await response.data;
 })
 
 tasks.value.filter(task => !task.completed);

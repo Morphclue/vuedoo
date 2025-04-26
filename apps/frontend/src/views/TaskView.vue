@@ -16,8 +16,8 @@ const newTask = ref<{ title: string; priority: string; date: Date | undefined }>
 });
 
 onMounted(async () => {
-  const response = await fetch(`${environment.backendUrl}/api/task`);
-  tasks.value = await response.json()
+  const response = await axios.get(`${environment.backendUrl}/api/task`);
+  tasks.value = await response.data;
 })
 
 const formattedDate = computed(() =>
